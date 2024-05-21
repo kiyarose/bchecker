@@ -18,3 +18,4 @@ async function fetchData(url) {
             const resElement = document.getElementById('res');
             resElement.innerHTML = `<p>Google: ${googleResult}</p><p>Xbox: ${xboxResult}</p>`;
         }
+displayResults();
