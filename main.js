@@ -1,21 +1,24 @@
-async function fetchData(url) {
-            try {
-                const response = await fetch(url, { mode: 'cors' }); // Add 'mode: cors'
-                if (response.ok) {
-                    return 'Internet is working.';
-                } else {
-                    return 'Internet is blocking something.';
-                }
-            } catch (error) {
-                return 'Error fetching data.';
-            }
-        }
+async function isGoogleAccessible() {
+    const url = "https://www.google.com";
+    try {
+        const response = await fetch(url);
+        return response.ok;
+    } catch (error) {
+        return false;
+    }
+}
 
-        async function displayResults() {
-            const googleResult = await fetchData('https://www.google.com');
-            const xboxResult = await fetchData('https://www.xbox.com');
+const googleAccessible = await isGoogleAccessible();
+async function isXboxBlocked() {
+    const url = "https://www.xbox.com";
+    try {
+        const response = await fetch(url);
+        return !response.ok;
+    } catch (error) {
+        return true;
+    }
+}
 
-            const resElement = document.getElementById('res');
-            resElement.innerHTML = `<p>Google: ${googleResult}</p><p>Xbox: ${xboxResult}</p>`;
-        }
-displayResults();
+const xboxBlocked = await isXboxBlocked();
+const resElement = document.getElementById("res");
+resElement.textContent = `Google accessible: ${googleAccessible}, Xbox blocked: ${xboxBlocked}`;
