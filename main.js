@@ -8,7 +8,6 @@ async function isGoogleAccessible() {
     }
 }
 
-const googleAccessible = await isGoogleAccessible();
 async function isXboxBlocked() {
     const url = "https://www.xbox.com";
     try {
@@ -19,6 +18,11 @@ async function isXboxBlocked() {
     }
 }
 
-const xboxBlocked = await isXboxBlocked();
-const resElement = document.getElementById("res");
-resElement.textContent = `Google accessible: ${googleAccessible}, Xbox blocked: ${xboxBlocked}`;
+// Call the functions and display the results
+(async () => {
+    const googleAccessible = await isGoogleAccessible();
+    const xboxBlocked = await isXboxBlocked();
+
+    const resElement = document.getElementById("res");
+    resElement.textContent = `Google accessible: ${googleAccessible}, Xbox blocked: ${xboxBlocked}`;
+})();
