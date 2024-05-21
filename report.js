@@ -11,14 +11,12 @@ async function report(url1, url2) {
                 console.error(error);
                 alert(error);
                 var stat1 = error
-                return stat1
             });
              fetch(url2)
             .then(response => {
                 if (response.ok) {
                     console.log('URL2 Accessable, Assuming unblocked');
                     var stat2 = 'ok'
-                    return stat1
                 }
             })
             .catch(error => {
