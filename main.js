@@ -1,34 +1,22 @@
-async function report(url1, url2) {
-   try{
-        fetch(url1)
-            .then(response => {
+async function fetchData(url) {
+            try {
+                const response = await fetch(url);
                 if (response.ok) {
-                    console.log('URL1 Accessable, Assuming internet is up!');
-                    var stat1 = 'ok'
+                    return 'Internet is working.';
+                } else {
+                    return 'Internet is blocking something.';
                 }
-            })
-            .catch(error => {
-                console.error(error);
-                alert(error);
-                var stat1 = error
-            });
-             fetch(url2)
-            .then(response => {
-                if (response.ok) {
-                    console.log('URL2 Accessable, Assuming unblocked');
-                    var stat2 = 'ok'
-                }
-            })
-            .catch(error => {
-                console.error(error)
-                var stat2 = error
-            });
-            var results = stat1 + stat2
-            return results
+            } catch (error) {
+                return 'Error fetching data.';
+            }
+        }
 
-       }catch (error) {
-          console.log(error);
-       }
-   }
-const result = report("https://www.google.com", "https://www.xbox.com")
-document.getElementById("res").body = result
+        async function displayResults() {
+            const googleResult = await fetchData('https://www.google.com');
+            const xboxResult = await fetchData('https://www.xbox.com');
+
+            const resElement = document.getElementById('res');
+            resElement.innerHTML = `<p>Google: ${googleResult}</p><p>Xbox: ${xboxResult}</p>`;
+        }
+
+        displayResults();
