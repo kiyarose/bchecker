@@ -1,6 +1,4 @@
-async function report(bstatus) {
-        var url1 = 'https://www.google.com';
-        var url2 = 'https://www.xbox.com';
+async function report(url1, url2) {
    try{
         fetch(url1)
             .then(response => {
