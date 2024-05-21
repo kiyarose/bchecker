@@ -1,6 +1,6 @@
 async function fetchData(url) {
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, { mode: 'cors' }); // Add 'mode: cors'
                 if (response.ok) {
                     return 'Internet is working.';
                 } else {
@@ -18,5 +18,3 @@ async function fetchData(url) {
             const resElement = document.getElementById('res');
             resElement.innerHTML = `<p>Google: ${googleResult}</p><p>Xbox: ${xboxResult}</p>`;
         }
-
-        displayResults();
