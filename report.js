@@ -1,7 +1,7 @@
 async function report(bstatus) {
         var url1 = 'https://www.google.com';
         var url2 = 'https://www.xbox.com';
-
+   try{
         fetch(url1)
             .then(response => {
                 if (response.ok) {
@@ -29,4 +29,8 @@ async function report(bstatus) {
             });
             var results = stat1 + stat2
             return results
+
+       }catch (error) {
+          console.log(error);
+       }
    }
